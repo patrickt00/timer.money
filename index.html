@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>timer.money</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>timer.money</h1>
+        <div class="calculator">
+            <div class="input-group">
+                <input type="number" id="amount" placeholder="Enter amount" step="0.01">
+                <select id="period">
+                    <option value="hour">Per Hour</option>
+                    <option value="day">Per Day</option>
+                    <option value="week">Per Week</option>
+                    <option value="month">Per Month</option>
+                    <option value="year">Per Year</option>
+                </select>
+                <select id="currency">
+                    <option value="USD">USD ($)</option>
+                    <option value="EUR">EUR (€)</option>
+                    <option value="GBP">GBP (£)</option>
+                    <option value="PLN">PLN (zł)</option>
+                </select>
+            </div>
+
+            <div class="results">
+                <div class="result-card">
+                    <h3>Real-time Earnings</h3>
+                    <div id="real-time" class="amount">0.00</div>
+                </div>
+                <div class="breakdown">
+                    <div class="breakdown-item">
+                        <span>Per Hour:</span>
+                        <span id="per-hour">0.00</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>Per Day:</span>
+                        <span id="per-day">0.00</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>Per Week:</span>
+                        <span id="per-week">0.00</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>Per Month:</span>
+                        <span id="per-month">0.00</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>Per Year:</span>
+                        <span id="per-year">0.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
