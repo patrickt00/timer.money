@@ -20,7 +20,23 @@ const currencySymbols = {
     USD: '$',
     EUR: '€',
     GBP: '£',
-    PLN: 'zł'
+    PLN: 'zł',
+    JPY: '¥',
+    CNY: '¥',
+    AUD: '$',
+    CAD: '$',
+    CHF: 'Fr',
+    HKD: '$',
+    NZD: '$',
+    SEK: 'kr',
+    KRW: '₩',
+    SGD: '$',
+    NOK: 'kr',
+    MXN: '$',
+    INR: '₹',
+    RUB: '₽',
+    ZAR: 'R',
+    TRY: '₺'
 };
 
 let startTime;
