@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const periodSelect = document.getElementById('period');
     const currencySelect = document.getElementById('currency');
     const realTimeDisplay = document.getElementById('real-time');
+    const timerDisplay = document.getElementById('timer');
     const perHour = document.getElementById('per-hour');
     const perDay = document.getElementById('per-day');
     const perWeek = document.getElementById('per-week');
@@ -137,6 +138,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Format time to HH:MM:SS
+    function formatTime(seconds) {
+        const hours = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds % 3600) / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    }
+
+    // Update timer display
+    function updateTimer() {
+        if (!startTime || baseAmount <= 0) {
+            timerDisplay.textContent = '00:00:00';
+            return;
+        }
+        const currentTime = new Date();
+        const secondsElapsed = Math.floor((currentTime - startTime) / 1000);
+        timerDisplay.textContent = formatTime(secondsElapsed);
+    }
+
     // Update all calculations
     function updateCalculations() {
         const hourlyRate = getHourlyRate(baseAmount, currentPeriod);
@@ -161,13 +181,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const earned = secondRate * secondsElapsed;
         
         realTimeDisplay.textContent = formatCurrency(earned);
+        updateTimer();
     }
 
     // Event Listeners
     amountInput.addEventListener('input', () => {
         baseAmount = parseFloat(amountInput.value) || 0;
-        startTime = new Date();
+        startTime = baseAmount > 0 ? new Date() : null;
         updateCalculations();
+        updateTimer();
         saveSettings();
     });
 
@@ -175,12 +197,14 @@ document.addEventListener('DOMContentLoaded', function() {
         currentPeriod = periodSelect.value;
         startTime = new Date();
         updateCalculations();
+        updateTimer();
         saveSettings();
     });
 
     currencySelect.addEventListener('change', () => {
         currentCurrency = currencySelect.value;
         updateCalculations();
+        updateTimer();
         saveSettings();
     });
 
