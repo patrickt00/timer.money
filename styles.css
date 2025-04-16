@@ -1,6 +1,8 @@
 :root[data-theme="light"] {
     --bg-gradient-1: #4b5eaf;
     --bg-gradient-2: #553676;
+    --bg-gradient-3: #6a4678;
+    --bg-gradient-4: #7e3d70;
     --text-primary: #2d3748;
     --text-secondary: #4a5568;
     --bg-container: rgba(255, 255, 255, 0.95);
@@ -8,11 +10,14 @@
     --bg-item: white;
     --border-color: #e2e8f0;
     --theme-toggle-bg: rgba(255, 255, 255, 0.2);
+    --glow-color: rgba(123, 104, 238, 0.6);
 }
 
 :root[data-theme="dark"] {
     --bg-gradient-1: #2a3362;
     --bg-gradient-2: #2d1f3d;
+    --bg-gradient-3: #1e1f3d;
+    --bg-gradient-4: #231748;
     --text-primary: #f7fafc;
     --text-secondary: #e2e8f0;
     --bg-container: rgba(26, 32, 44, 0.95);
@@ -20,6 +25,19 @@
     --bg-item: #1a202c;
     --border-color: #4a5568;
     --theme-toggle-bg: rgba(0, 0, 0, 0.2);
+    --glow-color: rgba(93, 63, 211, 0.6);
+}
+
+@keyframes pulse-glow {
+    0% {
+        box-shadow: 0 0 15px 0px var(--glow-color);
+    }
+    50% {
+        box-shadow: 0 0 30px 5px var(--glow-color);
+    }
+    100% {
+        box-shadow: 0 0 15px 0px var(--glow-color);
+    }
 }
 
 * {
@@ -93,8 +111,8 @@ body {
     background: var(--bg-container);
     padding: 2rem;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    animation: pulse-glow 3s ease-in-out infinite;
 }
 
 h1 {

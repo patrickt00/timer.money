@@ -14,6 +14,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Update page title based on current earnings
+    function updatePageTitle(amount) {
+        if (!amount || amount <= 0) {
+            document.title = "Timer Money";
+        } else {
+            document.title = formatCurrency(amount) + " - Timer Money";
+        }
+    }
+
     // Toggle theme with error handling
     themeToggle.addEventListener('click', () => {
         try {
@@ -171,7 +180,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Update real-time earnings
     function updateRealTimeEarnings() {
-        if (!startTime || baseAmount <= 0) return;
+        if (!startTime || baseAmount <= 0) {
+            updatePageTitle(0);
+            return;
+        }
         
         const hourlyRate = getHourlyRate(baseAmount, currentPeriod);
         const secondRate = hourlyRate / 3600; // Convert hourly rate to per second
@@ -182,6 +194,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         realTimeDisplay.textContent = formatCurrency(earned);
         updateTimer();
+        updatePageTitle(earned);
     }
 
     // Event Listeners
@@ -214,4 +227,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Update real-time earnings every 100ms
     setInterval(updateRealTimeEarnings, 100);
+
+    // Initialize with default title
+    updatePageTitle(0);
 }); 
